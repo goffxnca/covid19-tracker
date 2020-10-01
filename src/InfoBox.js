@@ -7,9 +7,11 @@ function InfoBox({ title, cases, total }) {
     <div className="infoBox">
       <Card>
         <CardContent>
-          <Typography color="textPrimary">{title}</Typography>
-          <Typography color="textSecondary">{cases}</Typography>
-          <Typography color="textSecondary">{total}</Typography>
+          <Typography color="textSecondary">{title}</Typography>
+          <Typography variant="h3" className="infoBox__cases">
+            {cases}
+          </Typography>
+          <Typography color="textSecondary">{total} Total</Typography>
         </CardContent>
       </Card>
     </div>

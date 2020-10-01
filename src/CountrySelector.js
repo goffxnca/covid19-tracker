@@ -1,8 +1,8 @@
-import "./Header.css";
+import "./CountrySelector.css";
 import { FormControl, MenuItem, Select } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 
-function Header() {
+function CountrySelector({ onCountryChange }) {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("worldwide");
 
@@ -21,30 +21,31 @@ function Header() {
     getCountries();
   }, []);
 
-  const onCountryChange = async (event) => {
+  const handleCountryChange = async (event) => {
     const countryCode = event.target.value;
     setSelectedCountry(countryCode);
+    onCountryChange(countryCode);
   };
 
   return (
-    <header className="header">
+    <div className="countrySelector">
       <h1>COVID 19 TRACKER</h1>
-      <FormControl className="header__form">
+      <FormControl className="countrySelector__form">
         <Select
           variant="outlined"
           value={selectedCountry}
-          onChange={onCountryChange}
+          onChange={handleCountryChange}
         >
           <MenuItem value="worldwide">Wolrdwide</MenuItem>
-          {countries.map((country) => (
-            <MenuItem key={country.value} value={country.value}>
+          {countries.map((country, idx) => (
+            <MenuItem key={idx} value={country.value}>
               {country.name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-    </header>
+    </div>
   );
 }
 
-export default Header;
+export default CountrySelector;

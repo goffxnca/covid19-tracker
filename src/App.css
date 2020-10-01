@@ -5,13 +5,17 @@
 
 .app {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 20px;
+}
+
+.app__left {
+  flex: 0.9;
 }
 
 .app__stats {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 @media (max-width: 900px) {
