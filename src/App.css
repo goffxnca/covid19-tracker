@@ -3,7 +3,19 @@
   margin: 0;
 }
 
+.app {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
 .app__stats {
   display: flex;
   justify-content: space-evenly;
+}
+
+@media (max-width: 900px) {
+  .app {
+    flex-direction: column;
+  }
 }
