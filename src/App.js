@@ -11,8 +11,6 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [selectedCountryCode, setSelectedCountryCode] = useState("worldwide");
 
-  // const [tableData, setTableData] = useState([]);
-
   const fetchCountryInfo = (country) => {
     const suffixUrl = country === "worldwide" ? "all" : `countries/${country}`;
     const fullUrl = `https://disease.sh/v3/covid-19/${suffixUrl}`;
@@ -34,8 +32,9 @@ function App() {
       const data = await response.json();
       setCountries(
         data.map((country) => ({
-          name: country.country,
-          value: country.countryInfo.iso2,
+          countryCode: country.countryInfo.iso2,
+          countryName: country.country,
+          cases: country.cases,
         }))
       );
     };
@@ -62,8 +61,8 @@ function App() {
             >
               <MenuItem value="worldwide">Wolrdwide</MenuItem>
               {countries.map((country, idx) => (
-                <MenuItem key={idx} value={country.value}>
-                  {country.name}
+                <MenuItem key={idx} value={country.countryCode}>
+                  {country.countryName}
                 </MenuItem>
               ))}
             </Select>
@@ -95,7 +94,7 @@ function App() {
         <Card>
           <CardContent>
             <h2>Live Cases by Country</h2>
-            {/* <Table countries={tableData} /> */}
+            <Table countries={countries} />
             <h2>Worldwide new cases</h2>
           </CardContent>
         </Card>
